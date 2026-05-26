@@ -6,7 +6,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # Allow requests from your WordPress domain
+CORS(app, origins=["https://nomadictrails.com", "https://www.nomadictrails.com"])
 
 # ---------- Load database (same as original) ----------
 JSON_DB_FILE = "database.json"   # Must be in the same directory on Railway
