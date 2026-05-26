@@ -1,4 +1,3 @@
-# app.py
 import os
 import json
 import re
@@ -6,12 +5,26 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, origins=["https://nomadictrails.com", "https://www.nomadictrails.com"])
 
-# ---------- Load database (same as original) ----------
-JSON_DB_FILE = "database.json"   # Must be in the same directory on Railway
-with open(JSON_DB_FILE, 'r', encoding='utf-8') as f:
-    db = json.load(f)
+# ---------- CORS Configuration ----------
+# Allow your WordPress domains and support preflight requests
+CORS(app,
+     origins=["https://nomadictrails.com", "https://www.nomadictrails.com"],
+     supports_credentials=True,
+     allow_headers=["Content-Type", "X-API-Key"])
+
+# ---------- Load Database (with error handling) ----------
+JSON_DB_FILE = "database.json"
+try:
+    with open(JSON_DB_FILE, 'r', encoding='utf-8') as f:
+        db = json.load(f)
+except FileNotFoundError:
+    print(f"❌ CRITICAL: {JSON_DB_FILE} not found in the current directory.")
+    print("   Make sure the file is uploaded to Railway and in the same folder as app.py")
+    exit(1)
+except json.JSONDecodeError as e:
+    print(f"❌ CRITICAL: {JSON_DB_FILE} is not valid JSON: {e}")
+    exit(1)
 
 COMPANY_NAME = db['company']['name']
 WEBSITE = db['company']['website']
@@ -27,7 +40,7 @@ EXCLUSIONS = db.get('exclusions', [])
 
 print("✅ Database loaded", flush=True)
 
-# ---------- Helper functions (copied from your script) ----------
+# ---------- Helper Functions (unchanged from your original) ----------
 def detect_shaman_from_text(text):
     text = text.lower()
     keywords = ['shaman', 'shamanism', 'shamanic', 'böö', 'boo ceremony', 'spiritual ceremony']
@@ -218,16 +231,6 @@ def get_flight_text(flights):
     return text
 
 def generate_response(inquiry_dict):
-    """
-    Generate response from a dictionary containing:
-      - Email Request (string)
-      - Intent (string)
-      - Destination (string)
-      - Duration (string)
-      - Tour Timing (string)
-      - Group Size (string)
-      - Complexity (string)
-    """
     email_text = inquiry_dict.get('Email Request', '')
     intent = inquiry_dict.get('Intent', 'Classic')
     duration = get_duration(inquiry_dict.get('Duration', ''))
@@ -358,12 +361,26 @@ def generate_response(inquiry_dict):
     response += f"\n\nThank you for considering {COMPANY_NAME}. We look forward to welcoming you to the Land of the Blue Sky!\n\nBest regards,\n\nTravel Specialist\n{COMPANY_NAME}\n{PHONE}\n{EMAIL}\n{WEBSITE}"
     return response
 
-# ---------- API Endpoint ----------
-API_KEY = os.environ.get('API_KEY', 'change-this-in-railway')
+# ---------- API Endpoints ----------
 
-@app.route('/generate', methods=['POST'])
+# Health check (prevents Railway from idling)
+@app.route('/')
+def health():
+    return "OK", 200
+
+# Main endpoint – handles both POST and OPTIONS (preflight)
+@app.route('/generate', methods=['POST', 'OPTIONS'])
 def generate():
+    # Handle preflight OPTIONS request manually (belt‑and‑suspenders)
+    if request.method == 'OPTIONS':
+        response = app.make_default_options_response()
+        response.headers.add('Access-Control-Allow-Origin', 'https://nomadictrails.com')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type, X-API-Key')
+        response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
+        return response
+
     # Authenticate
+    API_KEY = os.environ.get('API_KEY', 'change-this-in-railway')
     provided_key = request.headers.get('X-API-Key')
     if provided_key != API_KEY:
         return jsonify({'error': 'Unauthorized'}), 401
@@ -372,7 +389,6 @@ def generate():
     if not data:
         return jsonify({'error': 'No data provided'}), 400
 
-    # Validate required field
     if 'Email Request' not in data:
         return jsonify({'error': 'Missing field: Email Request'}), 400
 
@@ -393,6 +409,7 @@ def generate():
         response_text = generate_response(data)
         return jsonify({'response': response_text})
     except Exception as e:
+        print(f"Error in generate_response: {e}", flush=True)
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
