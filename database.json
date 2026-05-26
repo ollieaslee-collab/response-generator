@@ -1,0 +1,397 @@
+{
+  "company": {
+    "name": "Nomadic Trails",
+    "website": "https://nomadictrails.com",
+    "email": "info@nomadictrails.com",
+    "phone": "+976 1234 5678",
+    "description": "We are a local Mongolian tour operator specialising in authentic adventures, cultural immersions, and festival experiences across the Land of the Blue Sky."
+  },
+  "testimonials": [
+    {
+      "text": "The horseback archery tour was a once‑in‑a‑lifetime experience. The guides were professional and the landscapes breathtaking.",
+      "name": "Sarah Johnson",
+      "location": "USA",
+      "destinations": ["horse archery"]
+    },
+    {
+      "text": "Visiting the reindeer herders in Khuvsgul was magical. The organisation was flawless and we learned so much about their traditions.",
+      "name": "Markus Weber",
+      "location": "Germany",
+      "destinations": ["khuvsgul", "tsaatan"]
+    },
+    {
+      "text": "The Golden Eagle Festival exceeded all expectations. Highly recommend this trip!",
+      "name": "Elena Petrov",
+      "location": "Russia",
+      "destinations": ["eagle festival"]
+    }
+  ],
+  "cultural_notes": {
+    "shaman": "Shamanism is an ancient spiritual practice in Mongolia. You may witness a 'böö' ceremony with drumming, chanting, and offerings to nature spirits.",
+    "horse_archery": "Mongolian horseback archery dates back to Genghis Khan. Archers shoot at small leather balls while galloping – a true test of skill.",
+    "khuvsgul": "Lake Khuvsgul is the 'Blue Pearl of Mongolia', sacred to reindeer herders and home to unique wildlife and pristine nature.",
+    "ice_festival": "The Ice Festival on Lake Khuvsgul features ice sculptures, horse sledding, shaman rituals, and traditional games – held every March.",
+    "eagle": "Kazakh eagle hunters train golden eagles to hunt foxes and hares. The bond between hunter and bird is legendary.",
+    "naadam": "Naadam is the 'Three Manly Games' – wrestling, horse racing, and archery. Held nationwide in July.",
+    "eagle_hunter": "Visiting a real eagle hunter's family offers insight into their nomadic life, with demonstrations of eagle calling and hunting techniques.",
+    "gobi": "The Gobi Desert is a vast landscape of sand dunes, dinosaur fossils, and camel herding nomads. Don't miss the Flaming Cliffs.",
+    "terelj": "Terelj National Park is known for its granite rock formations, meadows, and the iconic 'Turtle Rock'. Perfect for short treks.",
+    "altai": "The Altai Mountains are remote and rugged, home to the Tuvan and Kazakh communities. Ideal for horse trekking and eagle hunting."
+  },
+  "flight_schedule": {
+    "gobi": {
+      "region": "Gobi Desert (Dalanzadgad)",
+      "departure_days": ["Monday", "Wednesday", "Friday"],
+      "departure_time": "08:30",
+      "flight_duration": "1h 20m"
+    },
+    "khuvsgul": {
+      "region": "Lake Khuvsgul (Mörön)",
+      "departure_days": ["Tuesday", "Thursday", "Saturday"],
+      "departure_time": "09:00",
+      "flight_duration": "1h 30m"
+    },
+    "olgii": {
+      "region": "Bayan‑Ölgii (Ölgii)",
+      "departure_days": ["Monday", "Thursday"],
+      "departure_time": "10:15",
+      "flight_duration": "2h 00m"
+    }
+  },
+  "itineraries": {
+    "adventure": {
+      "archery": {
+        "1": {
+          "title": "1‑Day Horseback Archery Experience",
+          "days": [
+            "Day 1: Meet your guide and horses at Terelj. Brief training on horseback archery. Afternoon practice session with traditional Mongolian bows. Return to Ulaanbaatar."
+          ]
+        },
+        "3": {
+          "title": "3‑Day Horseback Archery & Nomadic Stay",
+          "days": [
+            "Day 1: Drive to Terelj. Archery training on foot and horseback. Overnight in ger camp.",
+            "Day 2: Full day archery practice, including moving targets. Learn from experienced archers. Evening folklore performance.",
+            "Day 3: Morning competition among group. Return to UB."
+          ]
+        },
+        "5": {
+          "title": "5‑Day Horseback Archery Expedition",
+          "days": [
+            "Day 1: Arrival, archery basics.",
+            "Day 2‑3: Intensive riding and shooting, longer treks.",
+            "Day 4: Archery contest and cultural exchange with local herders.",
+            "Day 5: Return to UB."
+          ]
+        },
+        "7": {
+          "title": "7‑Day Ultimate Horseback Archery & Adventure",
+          "days": [
+            "Day 1: Training.",
+            "Day 2‑4: Cross‑country ride with archery challenges.",
+            "Day 5: Visit to nomadic family for archery demonstration.",
+            "Day 6: Final competition and prize ceremony.",
+            "Day 7: Return to UB."
+          ]
+        }
+      },
+      "khuvsgul": {
+        "9": {
+          "title": "9‑Day Khuvsgul Reindeer Tribe Winter Expedition",
+          "days": [
+            "Day 1: Fly to Mörön, drive to Khuvsgul Lake.",
+            "Day 2‑3: Meet Tsaatan reindeer herders. Learn about their winter life, ride reindeer.",
+            "Day 4‑6: Trek by reindeer or horse through snow‑covered taiga.",
+            "Day 7: Return to lake shore, visit ice formations.",
+            "Day 8: Drive back to Mörön, flight to UB.",
+            "Day 9: Departure."
+          ]
+        }
+      },
+      "bulgan": {
+        "7": {
+          "title": "7‑Day Bulgan Horse Riding & Forest Trails",
+          "days": [
+            "Day 1: Drive to Bulgan province. Meet horses.",
+            "Day 2‑5: Daily horse treks through birch forests and river valleys, camping with local herders.",
+            "Day 6: Return to UB.",
+            "Day 7: Departure."
+          ]
+        },
+        "10": {
+          "title": "10‑Day Bulgan Horse Riding Deep Dive",
+          "days": [
+            "Day 1‑2: Travel and acclimatisation.",
+            "Day 3‑7: Extended horse trek across Bulgan, visiting monasteries and hot springs.",
+            "Day 8‑9: Return journey, cultural show.",
+            "Day 10: Departure."
+          ]
+        }
+      },
+      "western_horse_riding": {
+        "7": {
+          "title": "7‑Day Western Mongolia Horse Riding (Altai)",
+          "days": [
+            "Day 1: Fly to Ölgii, meet Kazakh guides.",
+            "Day 2‑4: Horse trek around Altai Tavan Bogd mountains.",
+            "Day 5: Visit eagle hunter family.",
+            "Day 6: Fly back to UB.",
+            "Day 7: Departure."
+          ]
+        }
+      },
+      "terelj_dog_sledding": {
+        "3": {
+          "title": "3‑Day Terelj Dog Sledding & Horse Riding Winter",
+          "days": [
+            "Day 1: Drive to Terelj. Dog sledding orientation, short ride.",
+            "Day 2: Full day dog sledding in snow‑covered valley, afternoon horse riding.",
+            "Day 3: Morning horse ride, return to UB."
+          ]
+        }
+      },
+      "terelj_short_trek": {
+        "1": {
+          "title": "1‑Day Terelj Short Trek",
+          "days": ["Day 1: Hike to Turtle Rock, Aryabal Meditation Temple. Return to UB."]
+        },
+        "2": {
+          "title": "2‑Day Terelj Trek & Ger Stay",
+          "days": [
+            "Day 1: Trek to Turtle Rock, overnight in ger.",
+            "Day 2: Trek to river valley, visit nomadic family, return."
+          ]
+        },
+        "3": {
+          "title": "3‑Day Terelj Trekking Adventure",
+          "days": [
+            "Day 1: Arrival, short hike.",
+            "Day 2: Full day trek to Khagiin Khar Lake.",
+            "Day 3: Return via scenic route."
+          ]
+        }
+      },
+      "mountain_lakes_reindeer": {
+        "11": {
+          "title": "11‑Day Mountain Lakes and Reindeer (Northern Mongolia)",
+          "days": [
+            "Day 1: Fly to Mörön.",
+            "Day 2‑4: Drive to Tsagaannuur, meet Tsaatan.",
+            "Day 5‑7: Trek to Shishged River, ride reindeer.",
+            "Day 8‑9: Explore mountain lakes, wildlife viewing.",
+            "Day 10: Return to Mörön, flight.",
+            "Day 11: Departure."
+          ]
+        }
+      }
+    },
+    "festival": {
+      "golden_eagle": {
+        "5": {
+          "title": "5‑Day Golden Eagle Festival Experience",
+          "days": [
+            "Day 1: Fly to Ölgii. City tour.",
+            "Day 2: Opening ceremony of Golden Eagle Festival. Competitions: eagle calling, agility, beauty contest.",
+            "Day 3: Second day of festival, Kazakh games like Kok‑par (goat dragging).",
+            "Day 4: Visit eagle hunter's family, optional short horse ride.",
+            "Day 5: Fly back to UB."
+          ]
+        }
+      },
+      "naadam_ub": {
+        "2": {
+          "title": "2‑Day Naadam Festival in Ulaanbaatar",
+          "days": [
+            "Day 1: Central Stadium opening ceremony, wrestling and archery competitions.",
+            "Day 2: Horse racing at Hui Doloon Khudag, evening closing concert."
+          ]
+        }
+      },
+      "naadam_arvaikheer": {
+        "12": {
+          "title": "12‑Day Naadam Arvaikheer & Central Mongolia Tour",
+          "days": [
+            "Day 1‑2: Naadam in UB.",
+            "Day 3‑4: Drive to Arvaikheer, local Naadam.",
+            "Day 5‑8: Explore Orkhon Valley, Kharkhorin, Erdene Zuu monastery.",
+            "Day 9‑11: Horse trek to Tuvkhun Monastery, return to UB.",
+            "Day 12: Departure."
+          ]
+        }
+      },
+      "ice_reindeer_festival": {
+        "7": {
+          "title": "7‑Day Ice Festival & Reindeer (Land Tour)",
+          "days": [
+            "Day 1: Drive from UB to Khuvsgul (overland).",
+            "Day 2‑3: Ice Festival on Lake Khuvsgul – ice sculptures, reindeer sledding, shaman rituals.",
+            "Day 4‑5: Visit Tsaatan reindeer herders, stay in teepee.",
+            "Day 6: Return drive to UB.",
+            "Day 7: Departure."
+          ]
+        },
+        "9": {
+          "title": "9‑Day Ice Festival & Reindeer (Flight + Land)",
+          "days": [
+            "Day 1: Fly to Mörön, drive to lake.",
+            "Day 2‑3: Ice Festival activities.",
+            "Day 4‑6: Deep into taiga to meet reindeer herders, winter trek.",
+            "Day 7‑8: Return via Mörön, flight to UB.",
+            "Day 9: Departure."
+          ]
+        }
+      }
+    },
+    "cultural": {
+      "shaman": {
+        "10": {
+          "title": "10‑Day Shamanic Journey & Northern Mongolia",
+          "days": [
+            "Day 1: UB city tour, visit Shaman's Centre.",
+            "Day 2: Fly to Mörön, drive to Khuvsgul.",
+            "Day 3‑5: Participate in shamanic ceremonies, learn about spirit world.",
+            "Day 6‑8: Trek to sacred mountain, overnight at shaman's family.",
+            "Day 9: Return to UB.",
+            "Day 10: Departure."
+          ]
+        }
+      },
+      "eagle_hunter_visit": {
+        "5": {
+          "title": "5‑Day Eagle Hunter Visit (Western Mongolia)",
+          "days": [
+            "Day 1: Fly to Ölgii, city tour.",
+            "Day 2: Day with eagle hunter family – demonstration, photo session.",
+            "Day 3: Horse ride to nearby mountains, watch eagle hunt.",
+            "Day 4: Return to Ölgii, fly to UB.",
+            "Day 5: Departure."
+          ]
+        },
+        "7": {
+          "title": "7‑Day Deep Eagle Hunter Experience",
+          "days": [
+            "Day 1: Fly to Ölgii.",
+            "Day 2‑4: Stay with eagle hunter, learn training methods, participate in hunting.",
+            "Day 5‑6: Trek to Sagsai village, meet multiple hunters, attend local competition.",
+            "Day 7: Return to UB."
+          ]
+        }
+      },
+      "reindeer_tribe_visit": {
+        "5": {
+          "title": "5‑Day Reindeer Tribe Visit (Short)",
+          "days": [
+            "Day 1: Fly to Mörön, drive to Khuvsgul.",
+            "Day 2‑3: Visit Tsaatan camp, ride reindeer, overnight in tipi.",
+            "Day 4: Return to Mörön, flight to UB.",
+            "Day 5: Departure."
+          ]
+        },
+        "8": {
+          "title": "8‑Day Reindeer Tribe Visit (Extended)",
+          "days": [
+            "Day 1: Fly to Mörön.",
+            "Day 2‑4: Deep taiga trek to reindeer herders.",
+            "Day 5‑6: Live with tribe, learn their customs, help with herding.",
+            "Day 7: Return to Mörön, fly to UB.",
+            "Day 8: Departure."
+          ]
+        }
+      },
+      "photography": {
+        "8": {
+          "title": "8‑Day Mongolia Photography Tour",
+          "days": [
+            "Day 1: UB orientation, National Museum.",
+            "Day 2: Drive to Terelj – rock formations, nomad portraits.",
+            "Day 3‑4: Gobi Desert – sand dunes, camel caravans, sunset shoots.",
+            "Day 5‑6: Kharkhorin – Erdene Zuu monastery, Orkhon waterfall.",
+            "Day 7: Return to UB, photo review session.",
+            "Day 8: Departure."
+          ]
+        }
+      },
+      "gobi": {
+        "4": {
+          "title": "4‑Day Gobi Desert Express",
+          "days": [
+            "Day 1: Fly to Dalanzadgad. Drive to Yol Valley (ice canyon).",
+            "Day 2: Khongor Sand Dunes – camel riding, sand dune sunrise.",
+            "Day 3: Bayanzag (Flaming Cliffs) – dinosaur fossils. Return to Dalanzadgad.",
+            "Day 4: Fly back to UB."
+          ]
+        },
+        "6": {
+          "title": "6‑Day Gobi Discovery Tour",
+          "days": [
+            "Day 1: Fly to Gobi, Yol Valley.",
+            "Day 2: Khongor Sand Dunes, camel trek.",
+            "Day 3: Bayanzag, explore canyons.",
+            "Day 4: Drive to Gurvan Saikhan mountains, hiking.",
+            "Day 5: Visit nomadic camel herders, return to Dalanzadgad.",
+            "Day 6: Morning flight to UB."
+          ]
+        }
+      }
+    },
+    "classic": {
+      "ulaanbaatar_terelj": {
+        "1": {
+          "title": "1‑Day UB & Terelj Highlights",
+          "days": ["Day 1: Sukhbaatar Square, Gandan Monastery, then afternoon drive to Terelj for short hike – return evening."]
+        },
+        "2": {
+          "title": "2‑Day UB City & Terelj Overnight",
+          "days": [
+            "Day 1: UB city tour (museums, monastery).",
+            "Day 2: Terelj National Park – Turtle Rock, Aryabal Temple, ger camp lunch – return to UB."
+          ]
+        },
+        "3": {
+          "title": "3‑Day Ulaanbaatar & Terelj Relaxed Tour",
+          "days": [
+            "Day 1: UB sightseeing.",
+            "Day 2: Terelj full day with nomadic family visit and short horse ride.",
+            "Day 3: Free morning, departure."
+          ]
+        }
+      },
+      "kharhorin_mini_gobi_hustai": {
+        "5": {
+          "title": "5‑Day Kharhorin, Mini Gobi & Hustai National Park",
+          "days": [
+            "Day 1: Drive to Hustai National Park – wild Przewalski horses.",
+            "Day 2: Continue to Kharkhorin, visit Erdene Zuu monastery.",
+            "Day 3: Drive to Mini Gobi (Elsen Tasarkhai) – camel ride, sand dunes.",
+            "Day 4: Return to UB via Khustai for more horse watching.",
+            "Day 5: Departure."
+          ]
+        }
+      }
+    }
+  },
+  "inclusions": {
+    "standard": [
+      "Accommodation in hotels, ger camps or tents as per itinerary",
+      "All meals specified in itinerary (breakfast, lunch, dinner)",
+      "English‑speaking local guide",
+      "Private 4WD vehicle with driver (including fuel)",
+      "Park entrance fees and local taxes",
+      "Horse or camel riding where indicated",
+      "Water (1 litre per day)"
+    ],
+    "flight": [
+      "Domestic flights (e.g. UB – Mörön, UB – Ölgii, UB – Dalanzadgad)",
+      "Airport transfers on domestic flight days"
+    ]
+  },
+  "exclusions": [
+    "International flights to/from Mongolia",
+    "Travel insurance (mandatory)",
+    "Visa fees",
+    "Alcoholic beverages and soft drinks",
+    "Personal expenses (laundry, souvenirs, etc.)",
+    "Tips for guides and drivers",
+    "Extra activities not mentioned in itinerary"
+  ]
+}
