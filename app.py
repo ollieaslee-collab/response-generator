@@ -380,7 +380,7 @@ def generate():
         return response
 
     # Authenticate
-    API_KEY = os.environ.get('API_KEY', 'change-this-in-railway')
+    API_KEY = os.environ.get('API_KEY', 'NT2026staff#')
     provided_key = request.headers.get('X-API-Key')
     if provided_key != API_KEY:
         return jsonify({'error': 'Unauthorized'}), 401
