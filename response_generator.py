@@ -101,89 +101,116 @@ def get_itinerary_by_key(data_dict, key, target_duration):
 
 def find_itinerary(intent, destinations, duration, is_shaman, is_archery, is_tsaatan, festivals, is_eagle):
     duration_int = int(duration) if duration.isdigit() else 7
-    print(f"   Searching: intent={intent}, dur={duration_int}, dest={destinations}")
+    print(f"   Searching: intent={intent}, dur={duration_int}, dest={destinations}, festivals={festivals}")
 
-    # 1. Archery
+    # 1. Archery – under adventure -> archery
     if is_archery and 'adventure' in ITINERARIES and 'archery' in ITINERARIES['adventure']:
         itin = get_itinerary_by_key(ITINERARIES['adventure'], 'archery', duration_int)
         if itin:
-            return itin, 'archery'
+            return itin
 
-    # 2. Shaman (general section first)
-    if is_shaman:
-        if 'shaman' in ITINERARIES:
-            itin = get_itinerary_by_key(ITINERARIES, 'shaman', duration_int)
-            if itin:
-                return itin, 'shaman_general'
-        if 'cultural' in ITINERARIES and 'shaman_khuvsgul' in ITINERARIES['cultural']:
-            itin = get_itinerary_by_key(ITINERARIES['cultural'], 'shaman_khuvsgul', duration_int)
-            if itin:
-                return itin, 'shaman_khuvsgul'
-
-    # 3. Tsaatan
-    if is_tsaatan and 'adventure' in ITINERARIES and 'khuvsgul' in ITINERARIES['adventure']:
-        itin = get_itinerary_by_key(ITINERARIES['adventure'], 'khuvsgul', duration_int)
+    # 2. Shaman – under cultural -> shaman
+    if is_shaman and 'cultural' in ITINERARIES and 'shaman' in ITINERARIES['cultural']:
+        itin = get_itinerary_by_key(ITINERARIES['cultural'], 'shaman', duration_int)
         if itin:
-            return itin, 'tsaatan'
+            return itin
 
-    # 4. Festivals
+    # 3. Tsaatan (reindeer herders) – check both adventure->khuvsgul (winter) and cultural->reindeer_tribe_visit
+    if is_tsaatan:
+        # First try the winter reindeer expedition (adventure)
+        if 'adventure' in ITINERARIES and 'khuvsgul' in ITINERARIES['adventure']:
+            itin = get_itinerary_by_key(ITINERARIES['adventure'], 'khuvsgul', duration_int)
+            if itin:
+                return itin
+        # Then try the cultural reindeer tribe visit
+        if 'cultural' in ITINERARIES and 'reindeer_tribe_visit' in ITINERARIES['cultural']:
+            itin = get_itinerary_by_key(ITINERARIES['cultural'], 'reindeer_tribe_visit', duration_int)
+            if itin:
+                return itin
+
+    # 4. Festivals – map detection fest name to DB keys
+    fest_map = {
+        'ice': 'ice_reindeer_festival',
+        'eagle': 'golden_eagle',
+        'naadam': 'naadam_ub'   # default to UB naadam; you could add logic for Arvaikheer later
+    }
     for fest in festivals:
-        if fest in ('ice', 'eagle', 'naadam') and 'festival' in ITINERARIES and fest in ITINERARIES['festival']:
-            itin = get_itinerary_by_key(ITINERARIES['festival'], fest, duration_int)
+        db_key = fest_map.get(fest)
+        if db_key and 'festival' in ITINERARIES and db_key in ITINERARIES['festival']:
+            itin = get_itinerary_by_key(ITINERARIES['festival'], db_key, duration_int)
             if itin:
-                return itin, f'{fest}_festival'
+                return itin
 
-    # 5. Eagle hunter
-    if is_eagle and 'eagle_hunter' in ITINERARIES:
-        itin = get_itinerary_by_key(ITINERARIES, 'eagle_hunter', duration_int)
-        if itin:
-            return itin, 'eagle_hunter'
+    # 5. Eagle hunter (non‑festival) – under cultural -> eagle_hunter_visit
+    if is_eagle and not festivals:
+        if 'cultural' in ITINERARIES and 'eagle_hunter_visit' in ITINERARIES['cultural']:
+            itin = get_itinerary_by_key(ITINERARIES['cultural'], 'eagle_hunter_visit', duration_int)
+            if itin:
+                return itin
 
-    # 6. Adventure by destination
+    # 6. Adventure by destination – map destinations to adventure keys
+    adv_map = {
+        'khuvsgul': 'khuvsgul',
+        'terelj': 'terelj_short_trek',      # you can also handle dog sledding separately if winter keyword exists
+        'altai': 'western_horse_riding',
+        'olgii': 'western_horse_riding',
+        'bulgan': 'bulgan',
+        'mountain': 'mountain_lakes_reindeer'   # for "mountain lakes and reindeer"
+    }
     if 'adventure' in intent.lower() or destinations:
         for dest in destinations:
             d = dest.lower()
-            if 'gobi' in d:
-                itin = get_itinerary_by_key(ITINERARIES['adventure'], 'gobi', duration_int)
-                if itin:
-                    return itin, 'adventure_gobi'
-            if 'khuvsgul' in d or 'murun' in d:
-                itin = get_itinerary_by_key(ITINERARIES['adventure'], 'khuvsgul', duration_int)
-                if itin:
-                    return itin, 'adventure_khuvsgul'
-            if 'terelj' in d:
-                itin = get_itinerary_by_key(ITINERARIES['adventure'], 'terelj', duration_int)
-                if itin:
-                    return itin, 'adventure_terelj'
-            if 'altai' in d or 'olgii' in d:
-                itin = get_itinerary_by_key(ITINERARIES['adventure'], 'olgii', duration_int)
-                if itin:
-                    return itin, 'adventure_olgii'
+            for kw, adv_key in adv_map.items():
+                if kw in d and 'adventure' in ITINERARIES and adv_key in ITINERARIES['adventure']:
+                    itin = get_itinerary_by_key(ITINERARIES['adventure'], adv_key, duration_int)
+                    if itin:
+                        return itin
 
-    # 7. Cultural by destination
+    # 7. Cultural by destination – map destinations to cultural keys
+    cult_map = {
+        'gobi': 'gobi',
+        'shaman': 'shaman',       # already handled above, but here for dest-based
+        'photography': 'photography'
+    }
     if 'cultural' in intent.lower():
         for dest in destinations:
             d = dest.lower()
-            if 'ulaanbaatar' in d:
-                itin = get_itinerary_by_key(ITINERARIES['cultural'], 'ulaanbaatar', duration_int)
-                if itin:
-                    return itin, 'cultural_ub'
-            if 'kharkhorin' in d or 'orkhon' in d:
-                itin = get_itinerary_by_key(ITINERARIES['cultural'], 'kharkhorin', duration_int)
-                if itin:
-                    return itin, 'cultural_kharkhorin'
+            for kw, cult_key in cult_map.items():
+                if kw in d and 'cultural' in ITINERARIES and cult_key in ITINERARIES['cultural']:
+                    itin = get_itinerary_by_key(ITINERARIES['cultural'], cult_key, duration_int)
+                    if itin:
+                        return itin
 
-    # 8. Classic highlights (fallback)
-    if 'classic' in ITINERARIES and 'highlights' in ITINERARIES['classic']:
-        itin = get_itinerary_by_key(ITINERARIES['classic'], 'highlights', duration_int)
-        if itin:
-            return itin, 'classic'
+    # 8. Classic tours – map destinations to classic keys
+    classic_map = {
+        'ulaanbaatar': 'ulaanbaatar_terelj',
+        'terelj': 'ulaanbaatar_terelj',
+        'kharkhorin': 'kharhorin_mini_gobi_hustai',
+        'orkhon': 'kharhorin_mini_gobi_hustai',
+        'hustai': 'kharhorin_mini_gobi_hustai',
+        'mini gobi': 'kharhorin_mini_gobi_hustai'
+    }
+    # If intent is Classic or no specific intent, try classic
+    if 'classic' in intent.lower() or not destinations:
+        for dest in destinations:
+            d = dest.lower()
+            for kw, classic_key in classic_map.items():
+                if kw in d and 'classic' in ITINERARIES and classic_key in ITINERARIES['classic']:
+                    itin = get_itinerary_by_key(ITINERARIES['classic'], classic_key, duration_int)
+                    if itin:
+                        return itin
+        # Fallback: first classic tour
+        if 'classic' in ITINERARIES:
+            first_key = next(iter(ITINERARIES['classic']))
+            itin = get_itinerary_by_key(ITINERARIES['classic'], first_key, duration_int)
+            if itin:
+                return itin
 
-    # 9. Custom fallback
+    # 9. Ultimate custom fallback
     return {
         "title": f"Custom {duration_int}-Day Mongolia Tour",
         "days": [f"Customized activities based on your interests." for _ in range(duration_int)]
-    }, 'custom'
+    }
 
 def build_email_response(inquiry_text, override_intent=None, override_duration=None, override_destinations=None):
     # Extract from text if not overridden
